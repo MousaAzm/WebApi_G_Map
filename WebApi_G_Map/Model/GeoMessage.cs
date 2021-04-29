@@ -7,6 +7,9 @@ namespace WebApi_G_Map.Model
 {
     public class GeoMessage
     {
-
+        public int Id { get; set; }
+        public string message { get; set; }
+        public double longitude { get; set; }
+        public double latitude { get; set; }
     }
 }
