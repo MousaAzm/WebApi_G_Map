@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,13 +10,13 @@ namespace WebApi_G_Map.Data
     public static class GeoData
     {
 
-        public static void SeedData(GeoMessageContext context)
+        public static void SeedData(GeoMessageContext context, UserManager<GeoUser> userManager)
         {
-            Seeding(context);
-           
+            SeedComments(context);
+            SeedUsers(userManager);
         }
 
-        private static void Seeding(GeoMessageContext context)
+        private static void SeedComments(GeoMessageContext context)
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
@@ -33,6 +34,14 @@ namespace WebApi_G_Map.Data
             context.AddRange(mess);
             context.SaveChanges();
 
+        }
+
+        private static void SeedUsers(UserManager<GeoUser> userManager)
+        {
+            GeoUser user = new GeoUser();
+            user.UserName = "TestUser";
+    
+            IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd1!").Result;
         }
     }
 }

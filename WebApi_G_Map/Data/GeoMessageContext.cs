@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using WebApi_G_Map.Models;
 
 namespace WebApi_G_Map.Data
 {
-    public class GeoMessageContext : DbContext
+    public class GeoMessageContext : IdentityDbContext<GeoUser>
     {
         public GeoMessageContext(DbContextOptions<GeoMessageContext> options)
             : base(options)
@@ -16,6 +17,6 @@ namespace WebApi_G_Map.Data
         }
 
         public DbSet<GeoMessage> GeoMessages { get; set; }
-
+       
     }
 }
