@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,14 +22,11 @@ namespace WebApi_G_Map.Controllers
             _context = context;
         }
 
-
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeoComments>>> Get()
         {
             return await _context.GeoMessages.Select(m => m.ToComments()).ToListAsync();
         }
-
 
         [HttpGet("{id}")]
         public async Task<ActionResult<GeoComments>> GetMessage(int id)
@@ -43,6 +41,7 @@ namespace WebApi_G_Map.Controllers
             return ms.ToComments();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<GeoComments>> PostMessage(GeoComments mes)
         {
@@ -54,5 +53,6 @@ namespace WebApi_G_Map.Controllers
             return CreatedAtAction("GetMessage", new { id = gm.Id }, mes);
 
         }
+
     }
 }
