@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WebApi_G_Map.Models
 {
-    public class GeoMessage : GeoComments
+    public class GeoMessageV1 : GeoCommentsV1
     {
         public int Id { get; set; }
+
+        public GeoUser GeoUsers { get; set; }
     }
 
-    public class GeoComments
+    public class GeoCommentsV1
     {
         public string messagae { get; set; }
 
@@ -18,18 +17,18 @@ namespace WebApi_G_Map.Models
 
         public double latitude { get; set; }
 
-        public GeoMessage ToModel()
+        public GeoMessageV1 ToModel()
         {
-            return new GeoMessage
+            return new GeoMessageV1
             {
                 messagae = this.messagae,
                 Lognitude = this.Lognitude,
                 latitude = this.latitude
-            };  
+            };
 
         }
 
-        public GeoComments ToComments()
+        public GeoCommentsV1 ToComments()
         {
             return this;
         }

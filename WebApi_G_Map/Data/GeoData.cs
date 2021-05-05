@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApi_G_Map.Models;
 
 namespace WebApi_G_Map.Data
@@ -21,13 +17,13 @@ namespace WebApi_G_Map.Data
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            var mess = new GeoMessage[]
+            var mess = new GeoMessageV1[]
             {
-                new GeoMessage
+                new GeoMessageV1
                 {
-                    messagae = "hej",
-                    Lognitude = 54.457,
-                    latitude = 26.44
+                    messagae = "Hej",
+                    Lognitude = 12.537346634870165,
+                    latitude = 56.99912460665679
                 }
             };
 
@@ -40,7 +36,7 @@ namespace WebApi_G_Map.Data
         {
             GeoUser user = new GeoUser();
             user.UserName = "TestUser";
-    
+
             IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd1!").Result;
         }
     }
