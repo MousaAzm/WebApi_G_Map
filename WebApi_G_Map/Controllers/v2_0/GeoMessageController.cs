@@ -11,7 +11,7 @@ using WebApi_G_Map.Models;
 namespace WebApi_G_Map.Controllers.v2._0
 {
     [ApiVersion("2.0")]
-    [Route("api/v{version = ApiVersion}/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GeoMessageController : ControllerBase
     {
@@ -22,11 +22,10 @@ namespace WebApi_G_Map.Controllers.v2._0
             _context = context;
         }
 
-        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GeoCommentsV2>>> GetAll()
+        public async Task<ActionResult<IEnumerable<GeoCommentsV2>>> GetMessage()
         {
-            return await _context.GeoMessagesV2.Select(m => 
+            return await _context.GeoMessagesV2.Select(m =>
             m.ToComments()).ToListAsync();
         }
 

@@ -17,17 +17,36 @@ namespace WebApi_G_Map.Data
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            var mess = new GeoMessageV1[]
+            var messV1 = new GeoMessageV1[]
             {
+
                 new GeoMessageV1
                 {
-                    messagae = "Hej",
-                    Lognitude = 12.537346634870165,
-                    latitude = 56.99912460665679
+                    message = "",
+                    Lognitude = 0,
+                    latitude = 0
+                },
+                new GeoMessageV1
+                {
+                    message = "",
+                    Lognitude = 0,
+                    latitude = 0
+                },
+                new GeoMessageV1
+                {
+                    message = "",
+                    Lognitude = 0,
+                    latitude = 0
+                },
+                new GeoMessageV1
+                {
+                    message = "",
+                    Lognitude = 0,
+                    latitude = 0
                 }
             };
 
-            context.AddRange(mess);
+            context.AddRange(messV1);
             context.SaveChanges();
 
         }

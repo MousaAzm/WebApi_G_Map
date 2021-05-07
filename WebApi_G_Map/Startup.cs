@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using WebApi_G_Map.Controllers.v2._0;
 using WebApi_G_Map.Data;
 using WebApi_G_Map.Helpers;
 using WebApi_G_Map.Models;
@@ -31,31 +32,35 @@ namespace WebApi_G_Map
         {
             services.AddControllers();
 
-            services.AddApiVersioning(options =>
+            services.AddApiVersioning(o =>
             {
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.ReportApiVersions = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.ReportApiVersions = true;
+                o.ApiVersionReader = new QueryStringApiVersionReader("version");
             });
 
-            services.AddVersionedApiExplorer(options =>
+            services.AddVersionedApiExplorer(o =>
             {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
+                o.GroupNameFormat = "'v'VVV";
+                o.SubstituteApiVersionInUrl = true;
             });
 
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
-            services.AddSwaggerGen(c =>
+            
+            services.AddSwaggerGen(o =>
             {
-                c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+                o.SwaggerDoc("v1", new OpenApiInfo { Title = "Versioning by Url", Version = "v1.0" });
+                o.SwaggerDoc("v2", new OpenApiInfo { Title = "Versioning by Url", Version = "v2.0" });
+
+                o.AddSecurityDefinition("basic", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
                     Type = SecuritySchemeType.Http,
                     Scheme = "basic",
                     In = ParameterLocation.Header,
-                    Description = "Basic Authorization header using the Bearer scheme."
+                    Description = "Basic Login."
                 });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                o.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -83,18 +88,16 @@ namespace WebApi_G_Map
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
-                {                 
-                    foreach (var description in provider.ApiVersionDescriptions)
-                    {
-                        c.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName);
-                    }
+                {
+                    c.SwaggerEndpoint($"/swagger/v1/swagger.json", "v1.0");
+                    c.SwaggerEndpoint($"/swagger/v2/swagger.json", "v2.0");
                 });
 
             }

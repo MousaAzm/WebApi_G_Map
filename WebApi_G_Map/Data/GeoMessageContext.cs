@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApi_G_Map.Models;
+using WebApi_G_Map.Models.v2_0;
 
 namespace WebApi_G_Map.Data
 {
@@ -14,6 +15,7 @@ namespace WebApi_G_Map.Data
 
         public DbSet<GeoMessageV1> GeoMessagesV1 { get; set; }
         public DbSet<GeoMessageV2> GeoMessagesV2 { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     }
 }

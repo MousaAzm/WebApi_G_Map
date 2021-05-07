@@ -7,11 +7,12 @@ namespace WebApi_G_Map.Models
         public int Id { get; set; }
 
         public GeoUser GeoUsers { get; set; }
+
     }
 
     public class GeoCommentsV1
     {
-        public string messagae { get; set; }
+        public string message { get; set; }
 
         public double Lognitude { get; set; }
 
@@ -21,7 +22,7 @@ namespace WebApi_G_Map.Models
         {
             return new GeoMessageV1
             {
-                messagae = this.messagae,
+                message = this.message,
                 Lognitude = this.Lognitude,
                 latitude = this.latitude
             };

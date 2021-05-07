@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WebApi_G_Map.Controllers
+namespace WebApi_G_Map.Controllers.v1_0
 {
     [ApiVersion("2.0")]
     [Route("api/v{version = ApiVersion}/[controller]")]
