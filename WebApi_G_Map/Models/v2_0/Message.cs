@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi_G_Map.Models.v2_0
+namespace WebApi_G_Map.Models
 {
     public class Message
     {
@@ -14,5 +14,7 @@ namespace WebApi_G_Map.Models.v2_0
         public string Title { get; set; }
 
         public string Author { get; set; }
+
     }
+
 }

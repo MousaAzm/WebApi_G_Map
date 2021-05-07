@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApi_G_Map.Models;
-using WebApi_G_Map.Models.v2_0;
 
 namespace WebApi_G_Map.Data
 {

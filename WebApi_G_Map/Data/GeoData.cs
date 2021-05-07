@@ -45,7 +45,24 @@ namespace WebApi_G_Map.Data
                     latitude = 0
                 }
             };
+            var mess = new Message
+            {
+                Author = "anton",
+                Title = "titel",
+                Body = "kropp"
 
+            };
+            var messV2 = new GeoMessageV2[]
+            {
+
+                new GeoMessageV2
+                {
+                    Message = mess,
+                    Lognitude = 0,
+                    latitude = 0
+                }};
+
+            context.AddRange(messV2);
             context.AddRange(messV1);
             context.SaveChanges();
 

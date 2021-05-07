@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WebApi_G_Map.Models.v2_0;
+using WebApi_G_Map.Models;
 
 namespace WebApi_G_Map.Models
 {
@@ -10,7 +10,7 @@ namespace WebApi_G_Map.Models
         
         public GeoUser GeoUsers { get; set; }
 
-        public Message Message { get; set; }
+
         
     }
 
@@ -22,7 +22,9 @@ namespace WebApi_G_Map.Models
 
         public double latitude { get; set; }
 
-       
+        public Message Message { get; set; }
+
+
         public GeoMessageV2 ToModel()
         {
 

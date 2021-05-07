@@ -25,7 +25,10 @@ namespace WebApi_G_Map.Controllers.v2._0
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeoCommentsV2>>> GetMessage()
         {
-            return await _context.GeoMessagesV2.Select(m =>
+
+
+
+            return await _context.GeoMessagesV2.Include(m => m.Message).Select(m =>
             m.ToComments()).ToListAsync();
         }
 
