@@ -11,7 +11,7 @@ using WebApi_G_Map.Models;
 namespace WebApi_G_Map.Controllers.v1_0
 {
     [ApiVersion("1.0")]
-    [Route("api/v{version = ApiVersion}/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GeoMessageController : ControllerBase
     {
@@ -30,10 +30,9 @@ namespace WebApi_G_Map.Controllers.v1_0
         /// <returns></returns>
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GeoCommentsV1>>> GetMessage()
+        public async Task<ActionResult<IEnumerable<GeoMessageV1>>> GetMessage()
         {
-            return await _context.GeoMessagesV1.Select(m =>
-            m.ToComments()).ToListAsync();
+            return await _context.GeoMessagesV1.ToListAsync();
         }
 
         /// <summary>
@@ -41,9 +40,9 @@ namespace WebApi_G_Map.Controllers.v1_0
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-
+        
         [HttpGet("{id}")]
-        public async Task<ActionResult<GeoCommentsV1>> GetMessage(int id)
+        public async Task<ActionResult<GeoMessageV1>> GetMessage(int id)
         {
             var ms = await _context.GeoMessagesV1.FindAsync(id);
             
@@ -51,15 +50,10 @@ namespace WebApi_G_Map.Controllers.v1_0
             {
                 return NotFound();
             }
-            var res = new GeoCommentsV1
-            {
-                message = ms.message,
-                Lognitude = ms.Lognitude,
-                latitude = ms.latitude
-            };
-            return(res);
+         
+            return(ms);
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -68,14 +62,19 @@ namespace WebApi_G_Map.Controllers.v1_0
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<GeoCommentsV1>> PostMessage(GeoCommentsV1 message)
+        public async Task<ActionResult<GeoMessageV1>> PostMessage(GeoMessageV1 message)
         {
+            var userId = _userManager.GetUserId(User);
+            var user = _userManager.Users
+                .Where(u => u.Id == userId)
+                .Include(m => m.GeoMessagesV1)
+                .FirstOrDefault();
 
-            var gm = message.ToModel();
-            _context.GeoMessagesV1.Add(gm);
+            user.GeoMessagesV1.Add(message);
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMessage", new { id = gm.Id }, message);
+            return CreatedAtAction("GetMessage", new { id = message.Id }, message);
 
         }
     }

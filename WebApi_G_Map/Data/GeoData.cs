@@ -22,48 +22,54 @@ namespace WebApi_G_Map.Data
 
                 new GeoMessageV1
                 {
-                    message = "",
-                    Lognitude = 0,
-                    latitude = 0
+                    message = "Hello",
+                    longitude = 12.62089088500265,
+                    latitude = 57.03307860715982
                 },
                 new GeoMessageV1
                 {
-                    message = "",
-                    Lognitude = 0,
-                    latitude = 0
+                    message = "Hi",
+                    longitude = 13.556586486486488,
+                    latitude = 56.7286244026493
                 },
                 new GeoMessageV1
                 {
-                    message = "",
-                    Lognitude = 0,
-                    latitude = 0
+                    message = "Hi everyone",
+                    longitude = 12.240764546899841,
+                    latitude = 56.68901140206243
                 },
                 new GeoMessageV1
                 {
-                    message = "",
-                    Lognitude = 0,
+                    message = "Hej",
+                    longitude = 13.184814573396928,
+                    latitude = 57.41109981276025
+                }
+            };
+
+            var messV2 = new GeoMessageV2[]
+            {
+                new GeoMessageV2
+                {
+                    Message = new Message{author = "Björn", title = "title", body = "body"},
+                    longitude = 0,
+                    latitude = 0
+                },
+                new GeoMessageV2
+                {
+                    Message = new Message{author = "yes", title = "title", body = "body"},
+                    longitude = 0,
+                    latitude = 0
+                },
+                new GeoMessageV2
+                {
+                    Message = new Message{author = "test", title = "title", body = "body"},
+                    longitude = 0,
                     latitude = 0
                 }
             };
-            var mess = new Message
-            {
-                Author = "anton",
-                Title = "titel",
-                Body = "kropp"
 
-            };
-            var messV2 = new GeoMessageV2[]
-            {
-
-                new GeoMessageV2
-                {
-                    Message = mess,
-                    Lognitude = 0,
-                    latitude = 0
-                }};
-
-            context.AddRange(messV2);
             context.AddRange(messV1);
+            context.AddRange(messV2);
             context.SaveChanges();
 
         }

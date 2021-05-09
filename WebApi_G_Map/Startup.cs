@@ -25,11 +25,21 @@ namespace WebApi_G_Map
         {
             Configuration = configuration;
         }
-
+        
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                    {
+                        builder.WithOrigins("http://127.0.0.1:5500")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod(); 
+                       
+                    });
+            });
             services.AddControllers();
 
             services.AddApiVersioning(o =>
@@ -43,14 +53,13 @@ namespace WebApi_G_Map
             services.AddVersionedApiExplorer(o =>
             {
                 o.GroupNameFormat = "'v'VVV";
-                o.SubstituteApiVersionInUrl = true;
             });
 
             
             services.AddSwaggerGen(o =>
             {
-                o.SwaggerDoc("v1", new OpenApiInfo { Title = "Versioning by Url", Version = "v1.0" });
-                o.SwaggerDoc("v2", new OpenApiInfo { Title = "Versioning by Url", Version = "v2.0" });
+                o.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v1.0" });
+                o.SwaggerDoc("v2", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v2.0" });
 
                 o.AddSecurityDefinition("basic", new OpenApiSecurityScheme
                 {
@@ -105,6 +114,8 @@ namespace WebApi_G_Map
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
 

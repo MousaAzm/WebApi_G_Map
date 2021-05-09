@@ -6,8 +6,8 @@ using System.Linq;
 
 namespace WebApi_G_Map.Controllers.v1_0
 {
-    [ApiVersion("2.0")]
-    [Route("api/v{version = ApiVersion}/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/[controller]")]
     [ApiController]
     public class WeatherForecastController : ControllerBase
     {
