@@ -15,7 +15,7 @@ namespace WebApi_G_Map.Models
 
         public string title { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public string author { get; set; }
    
     }

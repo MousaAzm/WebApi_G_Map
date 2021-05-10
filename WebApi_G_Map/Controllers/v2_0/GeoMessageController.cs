@@ -36,10 +36,11 @@ namespace WebApi_G_Map.Controllers.v2._0
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeoMessageV2>>> GetMessage(double minLon, double minLat, double maxLon,double maxLat)
         {
-            if (minLon == 0|| minLat == 0 || maxLon == 0 || maxLat == 0)
+            if (minLon == 0 || minLat == 0 || maxLon == 0 || maxLat == 0)
             {
                 return await _context.GeoMessagesV2.Include(m => m.Message).ToListAsync();
             }
+
             return await _context.GeoMessagesV2
                 .Include(m => m.Message)
                 .Where(c => 
@@ -76,6 +77,8 @@ namespace WebApi_G_Map.Controllers.v2._0
                 .Where(u => u.Id == userId)
                 .Include(m => m.GeoMessagesV2)
                 .FirstOrDefault();
+
+            message.Message.author = user.FirstName + " " + user.LastName;
 
             user.GeoMessagesV2.Add(message);
             

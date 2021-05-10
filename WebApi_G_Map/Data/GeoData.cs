@@ -78,6 +78,8 @@ namespace WebApi_G_Map.Data
         {
             GeoUser user = new GeoUser();
             user.UserName = "TestUser";
+            user.FirstName = "bob";
+            user.LastName = "bobsson";
 
             IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd1!").Result;
         }
