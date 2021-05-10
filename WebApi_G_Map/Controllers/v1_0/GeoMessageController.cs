@@ -10,6 +10,9 @@ using WebApi_G_Map.Models;
 
 namespace WebApi_G_Map.Controllers.v1_0
 {
+    /// <summary>
+    /// Controller för version 1.0
+    /// </summary>
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
@@ -25,9 +28,9 @@ namespace WebApi_G_Map.Controllers.v1_0
         }
 
         /// <summary>
-        /// 
+        ///  Vissar alla geo meddelanden som skickade med POST 
         /// </summary>
-        /// <returns></returns>
+        /// <returns> <see cref="IEnumerable{GeoMessageV1}"/></returns>
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeoMessageV1>>> GetMessage()
@@ -36,10 +39,10 @@ namespace WebApi_G_Map.Controllers.v1_0
         }
 
         /// <summary>
-        /// 
+        /// Hitta meddelendet med ID
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns><see cref="GeoMessageV1"/></returns>
         
         [HttpGet("{id}")]
         public async Task<ActionResult<GeoMessageV1>> GetMessage(int id)
@@ -53,9 +56,9 @@ namespace WebApi_G_Map.Controllers.v1_0
          
             return(ms);
         }
-        
+
         /// <summary>
-        /// 
+        ///  Skicka ett meddelande (med Login)
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
