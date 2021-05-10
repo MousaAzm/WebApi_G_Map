@@ -32,16 +32,7 @@ namespace WebApi_G_Map
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                    {
-                        builder.WithOrigins("http://127.0.0.1:5500")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod(); 
-                       
-                    });
-            });
+            services.AddCors();
             services.AddControllers();
 
             services.AddApiVersioning(o =>
@@ -120,7 +111,11 @@ namespace WebApi_G_Map
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors(builder => builder
+            .SetIsOriginAllowed(origin => true)
+            .AllowAnyHeader()
+            .AllowCredentials()
+            );
 
             app.UseAuthentication();
 

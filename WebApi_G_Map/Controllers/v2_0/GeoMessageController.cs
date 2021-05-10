@@ -11,6 +11,9 @@ using WebApi_G_Map.Models;
 
 namespace WebApi_G_Map.Controllers.v2._0
 {
+    /// <summary>
+    /// Controller för version 2.0
+    /// </summary>
     [ApiVersion("2.0")]
     [Route("api/[controller]")]
     [ApiController]
@@ -51,6 +54,12 @@ namespace WebApi_G_Map.Controllers.v2._0
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// Hitta meddelendet med ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns><see cref="GeoMessageV2"/></returns>
+
         [HttpGet("{id}")]
         public async Task<ActionResult<GeoMessageV2>> GetMessage(int id)
         {
@@ -67,6 +76,12 @@ namespace WebApi_G_Map.Controllers.v2._0
                 .FirstOrDefaultAsync();
             return (message);
         }
+
+        /// <summary>
+        ///  Skicka ett meddelande (med Login)
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
 
         [Authorize]
         [HttpPost]
