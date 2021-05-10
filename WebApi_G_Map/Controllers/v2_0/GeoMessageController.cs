@@ -24,14 +24,30 @@ namespace WebApi_G_Map.Controllers.v2._0
             _context = context;
             _userManager = userManager;
         }
-           /// <summary>
-           /// Ange min och maxvärde för den kommentar du vill hämta, lämnas något fält tomt hämtas alla kommentarer.
-           /// </summary>
-           /// <param name="minLon"></param>
-           /// <param name="minLat"></param>
-           /// <param name="maxLon"></param>
-           /// <param name="maxLat"></param>
-           /// <returns></returns>
+
+        /// <summary>
+        /// Ange min och maxvärde för den kommentar du vill hämta, lämnas något fält tomt hämtas alla kommentarer.
+        /// </summary>
+        /// <remarks>
+        /// Sample response
+        /// 
+        ///     GET /api/GeoMessage
+        ///         {
+        ///             "longitude": 1,
+        ///             "latitude": 10,
+        ///             "message": {
+        ///              "body": "body",
+        ///              "title": "title",
+        ///              "author": "Sample Man"
+        ///             }
+        ///         },
+        ///     
+        /// </remarks>
+        /// <param name="minLon"></param>
+        /// <param name="minLat"></param>
+        /// <param name="maxLon"></param>
+        /// <param name="maxLat"></param>
+        /// <returns></returns>
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeoMessageV2>>> GetMessage(double minLon, double minLat, double maxLon,double maxLat)
