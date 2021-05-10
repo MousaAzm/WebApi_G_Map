@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.IO;
 using WebApi_G_Map.Controllers.v2._0;
 using WebApi_G_Map.Data;
 using WebApi_G_Map.Helpers;
@@ -60,6 +62,9 @@ namespace WebApi_G_Map
             {
                 o.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v1.0" });
                 o.SwaggerDoc("v2", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v2.0" });
+
+                var path = Path.Combine(AppContext.BaseDirectory, "Documentation.xml");
+                o.IncludeXmlComments(path);
 
                 o.AddSecurityDefinition("basic", new OpenApiSecurityScheme
                 {

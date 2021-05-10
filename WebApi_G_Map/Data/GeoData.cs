@@ -51,20 +51,20 @@ namespace WebApi_G_Map.Data
                 new GeoMessageV2
                 {
                     Message = new Message{author = "Björn", title = "title", body = "body"},
-                    longitude = 0,
-                    latitude = 0
+                    longitude = 1,
+                    latitude = 10
                 },
                 new GeoMessageV2
                 {
                     Message = new Message{author = "yes", title = "title", body = "body"},
-                    longitude = 0,
-                    latitude = 0
+                    longitude = 1,
+                    latitude = 12
                 },
                 new GeoMessageV2
                 {
                     Message = new Message{author = "test", title = "title", body = "body"},
-                    longitude = 0,
-                    latitude = 0
+                    longitude = 1,
+                    latitude = 13
                 }
             };
 
