@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ApiKey.ApiKey;
+using Microsoft.AspNetCore.Identity;
 using WebApi_G_Map.Models;
+using System.Threading.Tasks;
 
 namespace WebApi_G_Map.Data
 {
     public static class GeoData
     {
 
-        public static void SeedData(GeoMessageContext context, UserManager<GeoUser> userManager)
+        public static async Task SeedDataAsync(GeoMessageContext context, UserManager<GeoUser> userManager, ApiTokenManager apiTokenManager)
         {
             SeedComments(context);
-            SeedUsers(userManager);
+            await SeedUsersAsync(userManager, apiTokenManager);
         }
 
         private static void SeedComments(GeoMessageContext context)
@@ -74,14 +76,16 @@ namespace WebApi_G_Map.Data
 
         }
 
-        private static void SeedUsers(UserManager<GeoUser> userManager)
+        private static async Task SeedUsersAsync(UserManager<GeoUser> userManager, ApiTokenManager tokenManager)
         {
             GeoUser user = new GeoUser();
             user.UserName = "TestUser";
             user.FirstName = "bob";
             user.LastName = "bobsson";
 
-            IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd1!").Result;
+            await userManager.CreateAsync(user, "P@ssw0rd1!");
+
+            await tokenManager.GenerateTokenAsync(user, null);
         }
     }
 }

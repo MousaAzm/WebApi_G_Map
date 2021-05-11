@@ -80,5 +80,23 @@ namespace WebApi_G_Map.Controllers.v1_0
             return CreatedAtAction("GetMessage", new { id = message.Id }, message);
 
         }
+        /// <summary>
+        /// Logga in med Basic Auth för Api key
+        /// </summary>
+        /// <remarks>
+        /// Query parameter = ?ApiKey
+        /// </remarks>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("/api/GeoMessage/[action]")]
+        public async Task<IActionResult> ApiKey()
+        {
+            return Ok(await _context.ApiTokens
+                .Select(t => new {
+                    Name = t.User.UserName,
+                    ApiKey = t.Value
+                }).ToListAsync());
+        }
+
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using WebApi_G_Map.Data;
 using WebApi_G_Map.Models;
 
-namespace WebApi_G_Map.Controllers.v2._0
+namespace WebApi_G_Map.Controllers.v2_0
 {
     /// <summary>
     /// Controller för version 2.0

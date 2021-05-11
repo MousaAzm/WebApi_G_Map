@@ -1,3 +1,4 @@
+using ApiKey.ApiKey;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,12 +16,12 @@ namespace WebApi_G_Map
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateDbIfNotExists(host);
+            CreateDbIfNotExistsAsync(host);
 
             host.Run();
         }
 
-        private static void CreateDbIfNotExists(IHost host)
+        private static async System.Threading.Tasks.Task CreateDbIfNotExistsAsync(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
@@ -29,8 +30,9 @@ namespace WebApi_G_Map
                 {
                     var context = services.GetRequiredService<GeoMessageContext>();
                     var userManager = services.GetRequiredService<UserManager<GeoUser>>();
+                    var tokenManager = services.GetRequiredService<ApiTokenManager>();
 
-                    GeoData.SeedData(context, userManager);
+                    await GeoData.SeedDataAsync(context, userManager, tokenManager);
                 }
                 catch (Exception ex)
                 {
