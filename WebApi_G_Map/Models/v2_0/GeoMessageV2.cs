@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using WebApi_G_Map.Models;
+﻿using System.Text.Json.Serialization;
 
 namespace WebApi_G_Map.Models
 {
-    public class GeoMessageV2 
+    public class GeoMessageV2
     {
         [JsonIgnore]
         public int Id { get; set; }

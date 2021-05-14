@@ -1,17 +1,15 @@
-﻿using ApiKey.ApiKey;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using WebApi_G_Map.Models;
-using System.Threading.Tasks;
 
 namespace WebApi_G_Map.Data
 {
     public static class GeoData
     {
 
-        public static async Task SeedDataAsync(GeoMessageContext context, UserManager<GeoUser> userManager, ApiTokenManager apiTokenManager)
+        public static void SeedData(GeoMessageContext context, UserManager<GeoUser> userManager)
         {
             SeedComments(context);
-            await SeedUsersAsync(userManager, apiTokenManager);
+            SeedUsers(userManager);
         }
 
         private static void SeedComments(GeoMessageContext context)
@@ -52,21 +50,21 @@ namespace WebApi_G_Map.Data
             {
                 new GeoMessageV2
                 {
-                    Message = new Message{author = "Björn", title = "title", body = "body"},
-                    longitude = 1,
-                    latitude = 10
+                    Message = new Message{author = "Björn", title = "title_test1", body = "body_test1"},
+                    longitude = 16.376738473767887,
+                    latitude = 59.02998082329598
                 },
                 new GeoMessageV2
                 {
-                    Message = new Message{author = "yes", title = "title", body = "body"},
-                    longitude = 1,
-                    latitude = 12
+                    Message = new Message{author = "Mousa", title = "title_test2", body = "body_test2"},
+                    longitude = 15.849909856915739,
+                    latitude = 59.83433435430232
                 },
                 new GeoMessageV2
                 {
-                    Message = new Message{author = "test", title = "title", body = "body"},
-                    longitude = 1,
-                    latitude = 13
+                    Message = new Message{author = "Anton", title = "title_test3", body = "body_test3"},
+                    longitude = 16.98617631160572,
+                    latitude = 59.66414368275438
                 }
             };
 
@@ -76,16 +74,15 @@ namespace WebApi_G_Map.Data
 
         }
 
-        private static async Task SeedUsersAsync(UserManager<GeoUser> userManager, ApiTokenManager tokenManager)
+        private static void SeedUsers(UserManager<GeoUser> userManager)
         {
             GeoUser user = new GeoUser();
             user.UserName = "TestUser";
             user.FirstName = "bob";
             user.LastName = "bobsson";
 
-            await userManager.CreateAsync(user, "P@ssw0rd1!");
-
-            await tokenManager.GenerateTokenAsync(user, null);
+            IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd1!").Result;
         }
     }
+
 }

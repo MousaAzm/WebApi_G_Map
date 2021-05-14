@@ -1,20 +1,15 @@
-using ApiKey.ApiKey;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
-using WebApi_G_Map.Controllers;
 using WebApi_G_Map.Data;
 using WebApi_G_Map.Helpers;
 using WebApi_G_Map.Models;
@@ -28,7 +23,7 @@ namespace WebApi_G_Map
         {
             Configuration = configuration;
         }
-        
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -49,7 +44,7 @@ namespace WebApi_G_Map
                 o.GroupNameFormat = "'v'VVV";
             });
 
-            
+
             services.AddSwaggerGen(o =>
             {
                 o.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v1.0" });
@@ -90,8 +85,6 @@ namespace WebApi_G_Map
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-            
-            services.AddScoped<ApiTokenManager>();
 
         }
 

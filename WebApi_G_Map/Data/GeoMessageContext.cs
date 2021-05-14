@@ -1,8 +1,5 @@
-﻿using ApiKey.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Security.Claims;
 using WebApi_G_Map.Models;
 
 namespace WebApi_G_Map.Data
@@ -18,11 +15,5 @@ namespace WebApi_G_Map.Data
         public DbSet<GeoMessageV1> GeoMessagesV1 { get; set; }
         public DbSet<GeoMessageV2> GeoMessagesV2 { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<ApiToken> ApiTokens { get; set; }
-
-        internal object GetUserId(ClaimsPrincipal user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

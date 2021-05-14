@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +20,7 @@ namespace WebApi_G_Map.Controllers.v2_0
     {
         private readonly GeoMessageContext _context;
         private readonly UserManager<GeoUser> _userManager;
-        
+
         public GeoMessageController(GeoMessageContext context, UserManager<GeoUser> userManager)
         {
             _context = context;
@@ -53,7 +52,7 @@ namespace WebApi_G_Map.Controllers.v2_0
         /// <returns></returns>
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GeoMessageV2>>> GetMessage(double minLon, double minLat, double maxLon,double maxLat)
+        public async Task<ActionResult<IEnumerable<GeoMessageV2>>> GetMessage(double minLon, double minLat, double maxLon, double maxLat)
         {
             if (minLon == 0 || minLat == 0 || maxLon == 0 || maxLat == 0)
             {
@@ -62,10 +61,10 @@ namespace WebApi_G_Map.Controllers.v2_0
 
             return await _context.GeoMessagesV2
                 .Include(m => m.Message)
-                .Where(c => 
+                .Where(c =>
                 (c.latitude <= maxLat &&
                 c.latitude >= minLat) &&
-                (c.longitude <= maxLon && 
+                (c.longitude <= maxLon &&
                 c.longitude >= minLon))
                 .ToListAsync();
         }
@@ -112,7 +111,7 @@ namespace WebApi_G_Map.Controllers.v2_0
             message.Message.author = user.FirstName + " " + user.LastName;
 
             user.GeoMessagesV2.Add(message);
-            
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMessage", new { id = message.Id }, message);

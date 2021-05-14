@@ -9,7 +9,7 @@ namespace WebApi_G_Map.Models
 
         public string LastName { get; set; }
 
-        public ICollection<GeoMessageV1> GeoMessagesV1{get; set;}
+        public ICollection<GeoMessageV1> GeoMessagesV1 { get; set; }
         public ICollection<GeoMessageV2> GeoMessagesV2 { get; set; }
     }
 }

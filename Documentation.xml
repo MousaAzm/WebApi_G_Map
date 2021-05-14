@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi_G_Map</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi_G_Map.Controllers.v1_0.GeoMessageController">
+            <summary>
+            Controller för version 1.0
+            </summary>
+        </member>
+        <member name="M:WebApi_G_Map.Controllers.v1_0.GeoMessageController.GetMessage">
+            <summary>
+             Vissar alla geo meddelanden som skickade med POST 
+            </summary>
+            <returns> <see cref="T:System.Collections.Generic.IEnumerable`1"/></returns>
+        </member>
+        <member name="M:WebApi_G_Map.Controllers.v1_0.GeoMessageController.GetMessage(System.Int32)">
+            <summary>
+            Hitta meddelendet med ID
+            </summary>
+            <param name="id"></param>
+            <returns><see cref="T:WebApi_G_Map.Models.GeoMessageV1"/></returns>
+        </member>
+        <member name="M:WebApi_G_Map.Controllers.v1_0.GeoMessageController.PostMessage(WebApi_G_Map.Models.GeoMessageV1)">
+            <summary>
+             Skicka ett meddelande (med Login)
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi_G_Map.Controllers.v2_0.GeoMessageController">
+            <summary>
+            Controller för version 2.0
+            </summary>
+        </member>
+        <member name="M:WebApi_G_Map.Controllers.v2_0.GeoMessageController.GetMessage(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Ange min och maxvärde för den kommentar du vill hämta, lämnas något fält tomt hämtas alla kommentarer.
+            </summary>
+            <remarks>
+            Sample response
+            
+                GET /api/GeoMessage
+                    {
+                        "longitude": 1,
+                        "latitude": 10,
+                        "message": {
+                         "body": "body",
+                         "title": "title",
+                         "author": "Sample Man"
+                        }
+                    },
+                
+            </remarks>
+            <param name="minLon"></param>
+            <param name="minLat"></param>
+            <param name="maxLon"></param>
+            <param name="maxLat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_G_Map.Controllers.v2_0.GeoMessageController.GetMessage(System.Int32)">
+            <summary>
+            Hitta meddelendet med ID
+            </summary>
+            <param name="id"></param>
+            <returns><see cref="T:WebApi_G_Map.Models.GeoMessageV2"/></returns>
+        </member>
+        <member name="M:WebApi_G_Map.Controllers.v2_0.GeoMessageController.PostMessage(WebApi_G_Map.Models.GeoMessageV2)">
+            <summary>
+             Skicka ett meddelande (med Login)
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
