@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebApi_G_Map.Data;
 using WebApi_G_Map.Models;
 
+
 namespace WebApi_G_Map.Controllers.v1_0
 {
     /// <summary>
@@ -35,7 +36,23 @@ namespace WebApi_G_Map.Controllers.v1_0
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeoMessageV1>>> GetMessage()
         {
-            return await _context.GeoMessagesV1.ToListAsync();
+
+            List<GeoMessageV2> msgv2 = await _context.GeoMessagesV2.Include(m => m.Message).ToListAsync();
+            List<GeoMessageV1> msgv1 = await _context.GeoMessagesV1.Where(x => !string.IsNullOrEmpty(x.message)).ToListAsync();
+
+            foreach (var item in msgv2)
+            {
+                GeoMessageV1 geo = new GeoMessageV1
+                {
+                    message = item.Message.body,
+                    latitude = item.latitude,
+                    longitude = item.longitude
+                };
+                msgv1.Add(geo);
+
+            }
+            return (msgv1);
+           
         }
 
         /// <summary>

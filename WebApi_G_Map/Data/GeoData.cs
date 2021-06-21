@@ -22,25 +22,25 @@ namespace WebApi_G_Map.Data
 
                 new GeoMessageV1
                 {
-                    message = "Hello",
+                    message = "Hello_V1",
                     longitude = 12.62089088500265,
                     latitude = 57.03307860715982
                 },
                 new GeoMessageV1
                 {
-                    message = "Hi",
+                    message = "Hi_V1",
                     longitude = 13.556586486486488,
                     latitude = 56.7286244026493
                 },
                 new GeoMessageV1
                 {
-                    message = "Hi everyone",
+                    message = "Hi everyone_V1",
                     longitude = 12.240764546899841,
                     latitude = 56.68901140206243
                 },
                 new GeoMessageV1
                 {
-                    message = "Hej",
+                    message = "Hej_V1",
                     longitude = 13.184814573396928,
                     latitude = 57.41109981276025
                 }
@@ -50,19 +50,19 @@ namespace WebApi_G_Map.Data
             {
                 new GeoMessageV2
                 {
-                    Message = new Message{author = "Björn", title = "title_test1", body = "body_test1"},
+                    Message = new Message{author = "Björn", title = "title_test1_V2", body = "body_test1_V2"},
                     longitude = 16.376738473767887,
                     latitude = 59.02998082329598
                 },
                 new GeoMessageV2
                 {
-                    Message = new Message{author = "Mousa", title = "title_test2", body = "body_test2"},
+                    Message = new Message{author = "Mousa", title = "title_test2_V2", body = "body_test2_V2"},
                     longitude = 15.849909856915739,
                     latitude = 59.83433435430232
                 },
                 new GeoMessageV2
                 {
-                    Message = new Message{author = "Anton", title = "title_test3", body = "body_test3"},
+                    Message = new Message{author = "Anton", title = "title_test3_V2", body = "body_test3_V2"},
                     longitude = 16.98617631160572,
                     latitude = 59.66414368275438
                 }

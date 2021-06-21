@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
+using System.Linq;
 using WebApi_G_Map.Data;
 using WebApi_G_Map.Helpers;
 using WebApi_G_Map.Models;
@@ -42,6 +43,7 @@ namespace WebApi_G_Map
             services.AddVersionedApiExplorer(o =>
             {
                 o.GroupNameFormat = "'v'VVV";
+                o.SubstituteApiVersionInUrl = true;
             });
 
 
@@ -49,6 +51,8 @@ namespace WebApi_G_Map
             {
                 o.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v1.0" });
                 o.SwaggerDoc("v2", new OpenApiInfo { Title = "WebApi_G_Map", Version = "v2.0" });
+
+                o.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                 var path = Path.Combine(AppContext.BaseDirectory, "Documentation.xml");
                 o.IncludeXmlComments(path);

@@ -14,12 +14,9 @@ namespace WebApi_G_Map
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
             CreateDbIfNotExists(host);
-
             host.Run();
         }
-
 
         private static void CreateDbIfNotExists(IHost host)
         {
